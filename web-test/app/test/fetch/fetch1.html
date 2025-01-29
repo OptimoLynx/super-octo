@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Fetch-API-PUT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Fetch-API</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="">
-</head>
-
-<body>
-  <div>
-    FETCH-API
-  </div>
-  <script>
-    fetch('http://reqres.in/api/users', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: 'User 3'
+  <body>
+    <div>FETCH-API</div>
+    <script>
+      /*     fetch('http://reqres.in/api/users')
+      .then(res => {
+        if (!res.ok) {
+          console.log("Problem");
+          return;
+        }
+        return res.json();
       })
-    }).then(res => {
-        return res.json()
+      .then(data => {
+        console.log(data.data[2].first_name);
       })
-      .then(data => console.log(data))
-      .catch(error => console.log('ERROR'))
-  </script>
-</body>
+      .catch(error => console.log(error)); */
 
+      //PUT
+      const newUser = {
+        first_name: 'Mary',
+        last_name: 'Daniel',
+      };
+
+      fetch('https://reqres.in/api/users/33', {
+        method: 'PUT',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUser)
+      })
+        .then(res => {
+          if (!res.ok) {
+            console.log('Problem');
+            return;
+          }
+          return res.json();
+        })
+        .then(data => {
+          console.log('Success');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    </script>
+  </body>
 </html>
