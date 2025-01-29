@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch-API</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      line-height: 1.8;
+    }
+
+    .btn {
+      border: none;
+      background-color: rgb(25, 50, 113);
+      color: white;
+      padding: 10px 10px;
+      border-radius: 5px;
+      margin: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    FETCH-API
+    <br/>
+    <button class="btn">
+      Get Users
+    </button>
+  </div>
+
+  <script>
+    const brnEl = document.querySelector('.btn');
+
+    //GET the users
+    //Async Await to consume Promises
+    const clickHandler = async () => {
+      try {
+        const res = await fetch('https://reqres.in/api/users/');
+        const data = await res.json();
+
+        if(!res.ok){
+          console.log(data.description);
+          return;
+        }
+
+        console.log(data.data[5].first_name);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+
+    //Traditional Fetch Method
+/*     const clickHandler = () => {
+      fetch('https://reqres.in/api/users/')
+        .then(res => {
+          if(!res.ok) {
+            console.log('Problem');
+            return;
+          }
+          return res.json();
+        })
+        .then(data => {
+          console.log(data.data[4].first_name);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }; */
+
+    brnEl.addEventListener('click', clickHandler);
+
+  </script>
+</body>
+</html>
