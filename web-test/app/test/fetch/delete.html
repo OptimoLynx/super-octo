@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch-API</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      line-height: 1.8;
+    }
+
+    .btn {
+      border: none;
+      background-color: rgb(25, 50, 113);
+      color: white;
+      padding: 10px 10px;
+      border-radius: 5px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    FETCH-API
+    <br />
+    <button class="btn">
+      Remove Users
+    </button>
+  </div>
+
+  <script>
+    //PUT request
+    const brnEl = document.querySelector('.btn');
+
+    //Async Await to consume Promises
+    const clickHandler = async () => {
+      try {
+        const res = await fetch('https://reqres.in/api/users/12', {
+          method: 'DELETE',
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          console.log(data.description);
+          return;
+        }
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    brnEl.addEventListener('click', clickHandler);
+
+  </script>
+</body>
+
+</html>
