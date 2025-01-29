@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Fetch-API</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <div>
+    FETCH-API
+  </div>
+  <script>
+    fetch('http://reqres.in/api/users', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'User 3'
+      })
+    }).then(res => {
+        return res.json()
+      })
+      .then(data => console.log(data))
+      .catch(error => console.log('ERROR'))
+  </script>
+</body>
+
+</html>
