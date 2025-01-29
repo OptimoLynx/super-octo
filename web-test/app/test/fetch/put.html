@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch-API</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      line-height: 1.8;
+    }
+
+    .btn {
+      border: none;
+      background-color: rgb(25, 50, 113);
+      color: white;
+      padding: 10px 10px;
+      border-radius: 5px;
+      margin: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    FETCH-API
+    <br/>
+    <button class="btn">
+      Submit Users
+    </button>
+  </div>
+
+  <script>
+    //PUT request
+    const brnEl = document.querySelector('.btn');
+    // Replace the new user
+    const newUser = {
+      name: 'Jason',
+      job: 'Carpenter'
+    }
+
+    //Async Await to consume Promises
+    const clickHandler = async () => {
+      try {
+        const res = await fetch('https://reqres.in/api/users/33', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newUser)
+        });
+
+        const data = await res.json();
+
+        if(!res.ok){
+          console.log(data.description);
+          return;
+        }
+
+        console.log(data);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+
+    brnEl.addEventListener('click', clickHandler);
+
+  </script>
+</body>
+</html>
